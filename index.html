@@ -1,0 +1,133 @@
+<!doctype html>
+<html ⚡ lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://github.com/www-news-org/news.porche/documentation/examples/components/amp-next-page/index.html">
+  <meta name="viewport" content="width=device-width">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+  <script async custom-element="amp-next-page" src="https://cdn.ampproject.org/v0/amp-next-page-1.0.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
+  <script async custom-element="amp-next-page" src="https://cdn.ampproject.org/v0/amp-next-page-1.0.js"></script>
+  <title>Maliek News</title>
+   
+  <style amp-custom>
+    :root {
+      --space-4: 2rem;
+      --space-2: 1rem;
+      --color-primary: #005AF0;
+      --color-text-light: #fff;
+    }
+    .amp-next-page-sample-separator {
+      margin: var(--space-4) 0;
+      padding: var(--space-2);
+      background: var(--color-primary);
+      color: var(--color-text-light);
+    }
+    .previewOnly {
+      margin: var(--space-4);
+    }
+    .trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trigger > * {
+      padding: 0.5rem;
+      margin: 0.5rem;
+    }
+    .snackbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 48px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      max-width: 568px;
+      background: #323232;
+      color: white;
+      border-radius: 2px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      transform: translateY(100%);
+      z-index: 1000;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ## The snackbar -->
+  <!-- Our snackbar is a `div` containing the message. It's going to disappear after a few seconds so we don't provide any additional buttons to manually hide the snackbar. The text message is bound to an `amp-state` variable to make it's content configurable. This is not needed if the snackbar should always show the same message. -->
+  <div class="snackbar" [text]="message">
+    Welcome !
+  </div>
+
+  <!-- ## The trigger -->
+  <!-- The snackbar animation is triggered via the `restart` action: `on="tap:snackbarSlideIn.restart"`. We use the `restart` action to make it possible to override an already active animation. The input field simply updates the `amp-state` variable containing the snackbar's message. -->
+  <div class="trigger">
+    <input on="input-debounced:AMP.setState({message: event.value})" value="Subscribe">
+    <button on="tap:snackbarSlideIn.restart">
+      Show App
+    </button>
+  </div>
+
+
+  <amp-animation id="snackbarSlideIn" layout="nodisplay">
+    <script type="application/json">
+      [{
+        "duration": "3s",
+        "fill": "both",
+        "easing": "ease-out",
+        "iterations": "1",
+        "selector": ".snackbar",
+        "keyframes": [{
+            "transform": "translateY(100%)"
+          },
+          {
+            "transform": "translateY(0)", "offset": 0.1
+          },
+          {
+            "transform": "translateY(0)", "offset": 0.9
+          },
+
+          {
+            "transform": "translateY(100%)"
+          }
+        ]
+      }
+      ]
+    </script>
+  </amp-animation>
+
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+  <p class="previewOnly">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis, metus a tristique aliquet, enim nibh efficitur sem, ut iaculis urna justo eu diam. Nullam cursus sapien et sodales posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Donec vitae ornare risus. Maecenas eleifend ante vel dui laoreet, et porttitor libero rutrum. Nam arcu mi, ullamcorper at risus et, pulvinar ultrices erat. In pellentesque sem vel purus auctor, ut venenatis tellus tristique. Phasellus molestie diam orci, nec gravida turpis bibendum ut. Sed sagittis aliquet lorem sed dictum.
+  </p>
+
+  <!-- ## Basic usage -->
+  <!--
+    This sample uses the `amp-next-page` component to load other sample pages. It defines a custom separator.
+  -->
+
